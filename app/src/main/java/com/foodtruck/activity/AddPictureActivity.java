@@ -266,6 +266,7 @@ public class AddPictureActivity extends Activity {
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 
+// 2017년 11월 13일 월요일 오후 4시 46분
 
             intent.putExtra("return-data", false);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
