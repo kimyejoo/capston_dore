@@ -5,6 +5,12 @@
     <string name="hint_insert_name">상호명을 입력하세요.</string>
     <string name="hint_insert_local">주소를 입력하세요.</string>
     <string name="hint_insert_phone">전화번호를 입력하세요.</string>
+    <string name="hint_owner_say">주인말을 입력하세요.</string>
+    <string name="hint_sDate">시작 시간</string>
+    <string name="hint_eDate">종료 시간</string>
+    <string name="hint_location">주소를 입력하세요.</string>
+
+
     <string name="add">등록</string>
     <string name="take_picture">사진 촬영</string>
     <string name="take_album">엘범에서 가져오기</string>

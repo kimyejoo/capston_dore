@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="EditTextBase" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#FF383838</item>
+        <item name="android:textColorHint">#FFC8C8C8</item>
+        <item name="android:textSize">18dp</item>
+    </style>
 </resources>

@@ -10,7 +10,7 @@ public class StoreMenuVo {
 
     private String _id;
     private String img;
-    private int value;
+    private int price;
     private String name;
     private String desc;
     private Date created_at;
@@ -31,12 +31,12 @@ public class StoreMenuVo {
         this.img = img;
     }
 
-    public int getValue() {
-        return value;
+    public int getPrice() {
+        return price;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public String getName() {

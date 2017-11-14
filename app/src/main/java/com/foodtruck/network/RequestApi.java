@@ -4,6 +4,7 @@ import com.foodtruck.utils.Constants;
 import com.foodtruck.utils.LogUtil;
 import com.foodtruck.vo.ResponseVoBase;
 import com.foodtruck.vo.StoreListVo;
+import com.foodtruck.vo.UpdateVo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -105,6 +106,59 @@ public class RequestApi {
     public void getTruckList(final NetworkResponse responseListener) {
         RequestInterface service = getClient().create(RequestInterface.class);
         Call<StoreListVo> result = service.getTruckList();
+
+        Callback callback = new Callback<ResponseVoBase>() {
+            @Override
+            public void onResponse(Call<ResponseVoBase> call, retrofit2.Response<ResponseVoBase> response) {
+                returnResponse(call, response, responseListener);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseVoBase> call, Throwable t) {
+                responseListener.onFail(call, t.toString());
+            }
+        };
+        result.enqueue(callback);
+    }
+
+    public void postTruck(JsonObject params , final NetworkResponse responseListener) {
+        RequestInterface service = getClient().create(RequestInterface.class);
+        Call<UpdateVo> result = service.postTruck(params);
+
+        Callback callback = new Callback<ResponseVoBase>() {
+            @Override
+            public void onResponse(Call<ResponseVoBase> call, retrofit2.Response<ResponseVoBase> response) {
+                returnResponse(call, response, responseListener);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseVoBase> call, Throwable t) {
+                responseListener.onFail(call, t.toString());
+            }
+        };
+        result.enqueue(callback);
+    }
+
+    public void postTruckInfo(String truck_id, JsonObject params , final NetworkResponse responseListener) {
+        RequestInterface service = getClient().create(RequestInterface.class);
+        Call<UpdateVo> result = service.postTruckInfo(truck_id, params);
+
+        Callback callback = new Callback<ResponseVoBase>() {
+            @Override
+            public void onResponse(Call<ResponseVoBase> call, retrofit2.Response<ResponseVoBase> response) {
+                returnResponse(call, response, responseListener);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseVoBase> call, Throwable t) {
+                responseListener.onFail(call, t.toString());
+            }
+        };
+        result.enqueue(callback);
+    }
+    public void postTruckMenu(String truck_id, JsonObject params , final NetworkResponse responseListener) {
+        RequestInterface service = getClient().create(RequestInterface.class);
+        Call<UpdateVo> result = service.postTruckMenu(truck_id, params);
 
         Callback callback = new Callback<ResponseVoBase>() {
             @Override

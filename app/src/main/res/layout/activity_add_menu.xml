@@ -10,7 +10,7 @@
     >
 
     <LinearLayout
-
+        android:id="@+id/lay_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -21,28 +21,27 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:src="@drawable/camera"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             />
 
         <EditText
             android:id="@+id/et_name"
             style="@style/EditTextBase"
-            android:hint="@string/hint_insert_name"
+            android:hint="메뉴 이름 "
             android:layout_marginTop="20dp"
             />
         <EditText
-            android:id="@+id/et_local"
+            android:id="@+id/et_price"
             style="@style/EditTextBase"
-            android:hint="@string/hint_insert_local"
+            android:hint="가격"
+            android:inputType="number"
             />
 
         <EditText
-            android:id="@+id/et_phone"
+            android:id="@+id/et_brief"
             style="@style/EditTextBase"
-            android:hint="@string/hint_insert_phone"
+            android:hint="매뉴의 간단한 설명 "
             />
-
-
     </LinearLayout>
 
     <Button
@@ -51,9 +50,43 @@
         android:layout_height="wrap_content"
         android:text="@string/add"
         android:textSize="18dp"
+        android:layout_below="@id/lay_add"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        />
+
+    <ScrollView
+        android:layout_below="@id/btn_add"
+        android:layout_above="@id/btn_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/lay_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="완료"
+        android:textSize="18dp"
+        android:textColor="@color/col_main_txt"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:layout_alignParentBottom="true"
         />
+
 
 </RelativeLayout>

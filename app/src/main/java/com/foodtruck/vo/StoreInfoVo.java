@@ -11,7 +11,7 @@ public class StoreInfoVo {
     private String say;
     private String sDate;
     private String eDate;
-    private int[] holidays;
+    private String holidays;
     private Date created_at;
 
     public String get_id() {
@@ -46,11 +46,11 @@ public class StoreInfoVo {
         this.eDate = eDate;
     }
 
-    public int[] getHolidays() {
+    public String getHolidays() {
         return holidays;
     }
 
-    public void setHolidays(int[] holidays) {
+    public void setHolidays(String holidays) {
         this.holidays = holidays;
     }
 

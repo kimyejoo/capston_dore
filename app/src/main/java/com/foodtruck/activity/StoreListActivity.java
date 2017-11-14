@@ -46,8 +46,6 @@ public class StoreListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_list);
 
-
-
         listView = (RecyclerView) findViewById(R.id.listView);
         lManager = new LinearLayoutManager(this);
         listView.setLayoutManager(lManager);
@@ -69,14 +67,17 @@ public class StoreListActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
+        storeList.clear();
         requestData();
     }
 
     private void requestData() {
 
+
         RequestApi.getInstance().getTruckList(new NetworkResponse<StoreListVo>() {
             @Override
             public void onSuccess(Call call,  StoreListVo clazz) {
+
                 storeList.addAll(clazz.getData());
                 adapter.notifyDataSetChanged();
             }

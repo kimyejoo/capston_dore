@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.StoreListActivity">
+        <activity android:name=".activity.AddMenuActivity"
+            android:windowSoftInputMode="adjustNothing"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -23,6 +25,9 @@
         <activity android:name=".activity.SearchActivity" android:screenOrientation="portrait" />
         <activity android:name=".activity.SearchResultActivity" android:screenOrientation="portrait" />
         <activity android:name=".activity.AddTruckActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.AddTruckInfoActivity" android:screenOrientation="portrait" />
+        <!--<activity android:name=".activity.AddMenuActivity" android:screenOrientation="portrait" />-->
+
 
         <activity android:name=".activity.AddPictureActivity"
             android:screenOrientation="portrait"
