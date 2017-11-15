@@ -29,27 +29,27 @@ interface RequestInterface {
     Call<StoreListVo> getTruckList();
 
     //트럭정보 가져오기
-    @GET("api/truck/{_id}")
-    Call<StoreVo> getTruck(@Path(value="_id") String id);
+    @GET("api/truck/{truck_id}")
+    Call<StoreVo> getTruck(@Path(value="truck_id") String id);
     //트럭 정보 올리기
     @POST("api/truck")
     Call<UpdateVo> postTruck(@Body JsonObject params);
-    @PATCH("api/truck/{_id}")
-    Call<StoreVo> patchTruck(@Path(value="_id") String id, @Body JsonObject params);
-    @DELETE("api/truck/{_id}")
-    Call<StoreVo> deleteTruck(@Path(value="_id") String id);
+    @PATCH("api/truck/{truck_id}")
+    Call<ResponseVoBase> patchTruck(@Path(value="truck_id") String id, @Body JsonObject params);
+    @DELETE("api/truck/{truck_id}")
+    Call<ResponseVoBase> deleteTruck(@Path(value="truck_id") String id);
 
-    //트럭 상세 정보 가져오기
+    //트럭 메뉴 정보 가져오기
     @GET("api/menu/{truck_id}")
     Call<StoreMenuListVo> getTruckMenu(@Path(value="truck_id") String id);
     //트럭 메뉴 정보 올리기
     @POST("api/menu/{truck_id}")
     Call<UpdateVo> postTruckMenu(@Path(value="truck_id") String id, @Body JsonObject params);
     //트럭 메뉴 정보 수정
-    @PATCH("api/menu/{_id}")
-    Call<ResponseVoBase> patchTruckMenu(@Path(value="_id") String id, @Body JsonObject params);
-    @DELETE("api/menu/{_id}")
-    Call<ResponseVoBase> deleteTruckMenu(@Path(value="_id") String id);
+    @PATCH("api/menu/{menu_id}")
+    Call<ResponseVoBase> patchTruckMenu(@Path(value="menu_id") String id, @Body JsonObject params);
+    @DELETE("api/menu/{menu_id}")
+    Call<ResponseVoBase> deleteTruckMenu(@Path(value="menu_id") String id);
 
     //트럭 상세 정보 가져오기
     @GET("api/info/{truck_id}")
@@ -58,11 +58,11 @@ interface RequestInterface {
     @POST("api/info/{truck_id}")
     Call<UpdateVo> postTruckInfo(@Path(value="truck_id") String id, @Body JsonObject params);
     //트럭 상세 정보 수정
-    @PATCH("api/info/{_id}")
-    Call<ResponseVoBase> patchTruckInfo(@Path(value="_id") String id, @Body JsonObject params);
+    @PATCH("api/info/{info_id}")
+    Call<ResponseVoBase> patchTruckInfo(@Path(value="info_id") String id, @Body JsonObject params);
     //트럭 상세 정보 수정
-    @DELETE("api/info/{_id}")
-    Call<ResponseVoBase> deleteTruckInfo(@Path(value="_id") String id);
+    @DELETE("api/info/{info_id}")
+    Call<ResponseVoBase> deleteTruckInfo(@Path(value="info_id") String id);
 
     //트럭 뎃글 정보 가져오기
     @GET("api/reply/{truck_id}")
@@ -71,11 +71,11 @@ interface RequestInterface {
     @POST("api/reply/{truck_id}")
     Call<UpdateVo> postReply(@Path(value="truck_id") String id, @Body JsonObject params);
     //트럭 상세 정보 수정
-    @PATCH("api/reply/{_id}")
-    Call<ResponseVoBase> patchReply(@Path(value="_id") String id, @Body JsonObject params);
+    @PATCH("api/reply/{reply_id}")
+    Call<ResponseVoBase> patchReply(@Path(value="reply_id") String id, @Body JsonObject params);
     //트럭 상세 정보 수정
-    @DELETE("api/reply/{_id}")
-    Call<ResponseVoBase> deleteReply(@Path(value="_id") String id);
+    @DELETE("api/reply/{reply_id}")
+    Call<ResponseVoBase> deleteReply(@Path(value="reply_id") String id);
 
 
 

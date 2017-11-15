@@ -75,6 +75,14 @@ public class AddTruckActivity extends Activity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        et_local.setText("서울특별시 마포구 월드컵로 235");
+        et_phone.setText("010-2081-3082");
+
+    }
 
     /**
      * 주소를 위경도로 변환
@@ -127,7 +135,6 @@ public class AddTruckActivity extends Activity {
         params.addProperty("img", imageUrl);
         params.addProperty("lat", geoCode[0]);
         params.addProperty("lon", geoCode[1]);
-
 
         RequestApi.getInstance().postTruck(params, new NetworkResponse<UpdateVo>() {
             @Override

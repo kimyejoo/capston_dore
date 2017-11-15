@@ -1,15 +1,16 @@
 package com.foodtruck.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by evilstorm on 2017. 11. 14..
  */
 
-public class StoreReplyVo {
+public class StoreReplyVo implements Serializable {
     private String _id;
     private String  truck_id;
-    private double rate;
+    private int rate;
     private String say;
     private Date created_at;
 
@@ -29,11 +30,11 @@ public class StoreReplyVo {
         this.truck_id = truck_id;
     }
 
-    public double getRate() {
+    public int getRate() {
         return rate;
     }
 
-    public void setRate(double rate) {
+    public void setRate(int rate) {
         this.rate = rate;
     }
 

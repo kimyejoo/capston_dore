@@ -1,12 +1,13 @@
 package com.foodtruck.vo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by evilstorm on 2017. 11. 13..
  */
 
-public class StoreVo extends ResponseVoBase{
+public class StoreVo extends ResponseVoBase implements Serializable{
     private String _id;
     private String img;
     private String name;
@@ -15,7 +16,16 @@ public class StoreVo extends ResponseVoBase{
     private double lat;
 
     private ArrayList<StoreMenuVo> menus = new ArrayList<>();
+    private ArrayList<StoreReplyVo> replys = new ArrayList<>();
     private StoreInfoVo info;
+
+    public ArrayList<StoreReplyVo> getReplys() {
+        return replys;
+    }
+
+    public void setReplys(ArrayList<StoreReplyVo> replys) {
+        this.replys = replys;
+    }
 
     public ArrayList<StoreMenuVo> getMenus() {
         return menus;

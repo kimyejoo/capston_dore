@@ -1,6 +1,8 @@
 package com.foodtruck.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -19,6 +21,8 @@ import com.foodtruck.network.NetworkResponse;
 import com.foodtruck.network.RequestApi;
 import com.foodtruck.utils.LogUtil;
 import com.foodtruck.utils.StringUtil;
+import com.foodtruck.vo.StoreMenuVo;
+import com.foodtruck.vo.StoreVo;
 import com.foodtruck.vo.UpdateVo;
 import com.google.gson.JsonObject;
 import com.microsoft.azure.storage.CloudStorageAccount;
@@ -28,6 +32,7 @@ import com.microsoft.azure.storage.blob.CloudBlockBlob;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import retrofit2.Call;
@@ -47,12 +52,13 @@ public class AddMenuActivity extends Activity {
     private EditText et_price;
     private EditText et_brief;
     private LinearLayout lay_row;
-
+    private StoreVo storeVo;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_menu);
         truck_id  = getIntent().getStringExtra("truck_id");
+        storeVo  = (StoreVo) getIntent().getSerializableExtra("data");
 
         lay_row = (LinearLayout) findViewById(R.id.lay_row);
 
@@ -81,6 +87,7 @@ public class AddMenuActivity extends Activity {
             }
         });
 
+        prevMenuAdd(storeVo);
     }
 
     private void addMenu() {
@@ -121,6 +128,78 @@ public class AddMenuActivity extends Activity {
         });
     }
 
+    private void prevMenuAdd(StoreVo data) {
+        if(data == null || data.getMenus() == null) {
+            return;
+        }
+        ArrayList<StoreMenuVo> list = data.getMenus();
+        for (StoreMenuVo item: list) {
+            addPrevMenuList(item);
+        }
+
+    }
+    private void addPrevMenuList(StoreMenuVo data) {
+        View menuView = getLayoutInflater().inflate(R.layout.row_menu, null);
+        ImageView img = (ImageView) menuView.findViewById(R.id.img_thumbnail);
+        TextView tv_name = (TextView) menuView.findViewById(R.id.tv_name);
+        TextView tvt_price = (TextView) menuView.findViewById(R.id.tv_price);
+        TextView tv_brief = (TextView) menuView.findViewById(R.id.tv_brief);
+
+
+        Glide.with(AddMenuActivity.this)
+                .load(data.getImg())
+                .into(img);
+        tv_name.setText(data.getName());
+        tvt_price.setText(data.getPrice() + "");
+        tv_brief.setText(data.getDesc());
+
+        menuView.setTag(data.get_id());
+
+        menuView.setOnClickListener(deleteMenu);
+        lay_row.addView(menuView);
+
+    }
+
+    private View.OnClickListener deleteMenu = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            deleteReplyAlert((String) view.getTag(), view);
+        }
+    };
+
+    private void deleteReplyAlert(final String reply_id, final View view) {
+        new AlertDialog.Builder(AddMenuActivity.this)
+                .setMessage("삭제 하시겠습니까?")
+                .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(AddMenuActivity.this, "삭제 되었습니다..", Toast.LENGTH_SHORT).show();
+                        deleteMenu((String)view.getTag(), view);
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
+
+    }
+    private void deleteMenu(final String menu_id, final View view) {
+        RequestApi.getInstance().deleteTruckMenu(menu_id, new NetworkResponse() {
+            @Override
+            public void onSuccess(Call call, Object clazz) {
+                lay_row.removeView(view);
+            }
+
+            @Override
+            public void onFail(Call call, String msg) {
+                Toast.makeText(AddMenuActivity.this, "삭제 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void addmenuList(String menuId) {
         View menuView = getLayoutInflater().inflate(R.layout.row_menu, null);
         ImageView img = (ImageView) menuView.findViewById(R.id.img_thumbnail);
@@ -137,6 +216,7 @@ public class AddMenuActivity extends Activity {
         tv_brief.setText(StringUtil.getString(this.et_brief));
 
         menuView.setTag(menuId);
+        menuView.setOnClickListener(deleteMenu);
 
         lay_row.addView(menuView);
 

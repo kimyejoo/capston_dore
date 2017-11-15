@@ -33,16 +33,18 @@ public class RequestApi {
 
     private Gson gson;
 
-    private RequestApi() {}
+    private RequestApi() {
+    }
+
     private static class Singleton {
         private static final RequestApi instance = new RequestApi();
     }
 
-    public static RequestApi getInstance () {
+    public static RequestApi getInstance() {
         return Singleton.instance;
     }
 
-    private static HashMap<String, String> HEADERS = new HashMap<String, String>(){
+    private static HashMap<String, String> HEADERS = new HashMap<String, String>() {
         {
             put("Content-Type", "application/vnd.api+json");
         }
@@ -84,10 +86,10 @@ public class RequestApi {
 
     private Retrofit getClient() {
 
-        if(gson  == null) {
+        if (gson == null) {
             //Tue, 01 Aug 2017 00:54:13 GMT
             gson = new GsonBuilder()
-            .setDateFormat("EEE, dd MMM yyyy HH:mm:ss Z")
+                    .setDateFormat("EEE, dd MMM yyyy HH:mm:ss Z")
 //                    .setDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
                     .create();
 
@@ -121,7 +123,7 @@ public class RequestApi {
         result.enqueue(callback);
     }
 
-    public void postTruck(JsonObject params , final NetworkResponse responseListener) {
+    public void postTruck(JsonObject params, final NetworkResponse responseListener) {
         RequestInterface service = getClient().create(RequestInterface.class);
         Call<UpdateVo> result = service.postTruck(params);
 
@@ -139,7 +141,25 @@ public class RequestApi {
         result.enqueue(callback);
     }
 
-    public void postTruckInfo(String truck_id, JsonObject params , final NetworkResponse responseListener) {
+    public void deleteTruck(String truck_id, final NetworkResponse responseListener) {
+        RequestInterface service = getClient().create(RequestInterface.class);
+        Call<ResponseVoBase> result = service.deleteTruck(truck_id);
+
+        Callback callback = new Callback<ResponseVoBase>() {
+            @Override
+            public void onResponse(Call<ResponseVoBase> call, retrofit2.Response<ResponseVoBase> response) {
+                returnResponse(call, response, responseListener);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseVoBase> call, Throwable t) {
+                responseListener.onFail(call, t.toString());
+            }
+        };
+        result.enqueue(callback);
+    }
+
+    public void postTruckInfo(String truck_id, JsonObject params, final NetworkResponse responseListener) {
         RequestInterface service = getClient().create(RequestInterface.class);
         Call<UpdateVo> result = service.postTruckInfo(truck_id, params);
 
@@ -156,9 +176,138 @@ public class RequestApi {
         };
         result.enqueue(callback);
     }
-    public void postTruckMenu(String truck_id, JsonObject params , final NetworkResponse responseListener) {
+
+    public void patchTruckInfo(String info_id, JsonObject params, final NetworkResponse responseListener) {
+        RequestInterface service = getClient().create(RequestInterface.class);
+        Call<ResponseVoBase> result = service.patchTruckInfo(info_id, params);
+
+        Callback callback = new Callback<ResponseVoBase>() {
+            @Override
+            public void onResponse(Call<ResponseVoBase> call, retrofit2.Response<ResponseVoBase> response) {
+                returnResponse(call, response, responseListener);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseVoBase> call, Throwable t) {
+                responseListener.onFail(call, t.toString());
+            }
+        };
+        result.enqueue(callback);
+    }
+
+    public void deleteTruckInfo(String info_id, final NetworkResponse responseListener) {
+        RequestInterface service = getClient().create(RequestInterface.class);
+        Call<ResponseVoBase> result = service.deleteTruckInfo(info_id);
+
+        Callback callback = new Callback<ResponseVoBase>() {
+            @Override
+            public void onResponse(Call<ResponseVoBase> call, retrofit2.Response<ResponseVoBase> response) {
+                returnResponse(call, response, responseListener);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseVoBase> call, Throwable t) {
+                responseListener.onFail(call, t.toString());
+            }
+        };
+        result.enqueue(callback);
+    }
+
+
+    public void postTruckMenu(String truck_id, JsonObject params, final NetworkResponse responseListener) {
         RequestInterface service = getClient().create(RequestInterface.class);
         Call<UpdateVo> result = service.postTruckMenu(truck_id, params);
+
+        Callback callback = new Callback<ResponseVoBase>() {
+            @Override
+            public void onResponse(Call<ResponseVoBase> call, retrofit2.Response<ResponseVoBase> response) {
+                returnResponse(call, response, responseListener);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseVoBase> call, Throwable t) {
+                responseListener.onFail(call, t.toString());
+            }
+        };
+        result.enqueue(callback);
+    }
+
+    public void patchTruckMenu(String menu_id, JsonObject params, final NetworkResponse responseListener) {
+        RequestInterface service = getClient().create(RequestInterface.class);
+        Call<ResponseVoBase> result = service.patchTruckMenu(menu_id, params);
+
+        Callback callback = new Callback<ResponseVoBase>() {
+            @Override
+            public void onResponse(Call<ResponseVoBase> call, retrofit2.Response<ResponseVoBase> response) {
+                returnResponse(call, response, responseListener);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseVoBase> call, Throwable t) {
+                responseListener.onFail(call, t.toString());
+            }
+        };
+        result.enqueue(callback);
+    }
+
+    public void deleteTruckMenu(String menu_id, final NetworkResponse responseListener) {
+        RequestInterface service = getClient().create(RequestInterface.class);
+        Call<ResponseVoBase> result = service.deleteTruckMenu(menu_id);
+
+        Callback callback = new Callback<ResponseVoBase>() {
+            @Override
+            public void onResponse(Call<ResponseVoBase> call, retrofit2.Response<ResponseVoBase> response) {
+                returnResponse(call, response, responseListener);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseVoBase> call, Throwable t) {
+                responseListener.onFail(call, t.toString());
+            }
+        };
+        result.enqueue(callback);
+    }
+
+
+    public void postReply(String truck_id, JsonObject params, final NetworkResponse responseListener) {
+        RequestInterface service = getClient().create(RequestInterface.class);
+        Call<UpdateVo> result = service.postReply(truck_id, params);
+
+        Callback callback = new Callback<ResponseVoBase>() {
+            @Override
+            public void onResponse(Call<ResponseVoBase> call, retrofit2.Response<ResponseVoBase> response) {
+                returnResponse(call, response, responseListener);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseVoBase> call, Throwable t) {
+                responseListener.onFail(call, t.toString());
+            }
+        };
+        result.enqueue(callback);
+    }
+
+    public void patchReply(String reply_id, JsonObject params, final NetworkResponse responseListener) {
+        RequestInterface service = getClient().create(RequestInterface.class);
+        Call<ResponseVoBase> result = service.patchReply(reply_id, params);
+
+        Callback callback = new Callback<ResponseVoBase>() {
+            @Override
+            public void onResponse(Call<ResponseVoBase> call, retrofit2.Response<ResponseVoBase> response) {
+                returnResponse(call, response, responseListener);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseVoBase> call, Throwable t) {
+                responseListener.onFail(call, t.toString());
+            }
+        };
+        result.enqueue(callback);
+    }
+
+    public void deleteReply(String reply_id, final NetworkResponse responseListener) {
+        RequestInterface service = getClient().create(RequestInterface.class);
+        Call<ResponseVoBase> result = service.deleteReply(reply_id);
 
         Callback callback = new Callback<ResponseVoBase>() {
             @Override
@@ -178,7 +327,7 @@ public class RequestApi {
     private synchronized void returnResponse(Call call, retrofit2.Response response, NetworkResponse responseListener) {
         LogUtil.e(call.request().url() + " // response.code() : " + response.code());
 
-        if(response.isSuccessful()) {
+        if (response.isSuccessful()) {
             responseListener.onSuccess(call, response.body());
         } else {
             try {
@@ -186,11 +335,8 @@ public class RequestApi {
             } catch (Exception e) {
                 responseListener.onFail(call, "데이터 수신에 실패했습니다. 잠시 후 다시 시도해주세요.");
             }
-
         }
-
     }
-
 
 
 }

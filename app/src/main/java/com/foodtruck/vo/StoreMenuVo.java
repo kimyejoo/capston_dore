@@ -1,19 +1,29 @@
 package com.foodtruck.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by evilstorm on 2017. 11. 13..
  */
 
-public class StoreMenuVo {
+public class StoreMenuVo implements Serializable {
 
     private String _id;
+    private String truck_id;
     private String img;
     private int price;
     private String name;
     private String desc;
     private Date created_at;
+
+    public String getTruck_id() {
+        return truck_id;
+    }
+
+    public void setTruck_id(String truck_id) {
+        this.truck_id = truck_id;
+    }
 
     public String get_id() {
         return _id;
