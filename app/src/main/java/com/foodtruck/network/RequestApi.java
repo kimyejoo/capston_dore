@@ -46,7 +46,6 @@ public class RequestApi {
 
     private static HashMap<String, String> HEADERS = new HashMap<String, String>() {
         {
-            put("Content-Type", "application/vnd.api+json");
         }
     };
 
