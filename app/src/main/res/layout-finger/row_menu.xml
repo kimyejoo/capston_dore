@@ -1,54 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    >
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/img_thumbnail"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
-        />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="10dp"
+        android:background="@drawable/bg_foodcard"
         >
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/img_thumbnail"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:textColor="@color/col_main_txt"
             />
-
-        <TextView
-            android:id="@+id/tv_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:textColor="@color/col_main_txt"
-            android:layout_marginTop="5dp"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_foodcard_g"
+            android:layout_alignParentBottom="true"
             />
         <TextView
-            android:id="@+id/tv_brief"
+            android:id="@+id/tv_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:textColor="@color/col_main_txt"
-            android:lines="2"
-            android:layout_marginTop="5dp"
+            android:textSize="24dp"
+            android:textColor="#ffffff"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
             />
+    </RelativeLayout>
 
-
-    </LinearLayout>
-
-
-
-</LinearLayout>
+</RelativeLayout>

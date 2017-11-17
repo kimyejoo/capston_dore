@@ -127,7 +127,9 @@ public class AddReplyActivity extends Activity {
     }
 
     private void addReplyList(StoreReplyVo data) {
-        View baseView = getLayoutInflater().inflate(R.layout.row_reply, null);
+
+        LogUtil.e(" Reply ID : " + data.get_id());
+        View baseView = getLayoutInflater().inflate(R.layout.row_add_reply, null);
         baseView.setTag(data.get_id());
 
         ImageButton[] score = new ImageButton[5];
@@ -168,7 +170,7 @@ public class AddReplyActivity extends Activity {
 
     private void addReplyList(String reply_id) {
         LogUtil.e(" Reply ID : " + reply_id);
-        View baseView = getLayoutInflater().inflate(R.layout.row_reply, null);
+        View baseView = getLayoutInflater().inflate(R.layout.row_add_reply, null);
         baseView.setTag(reply_id);
 
         ImageButton[] score = new ImageButton[5];

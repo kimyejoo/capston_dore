@@ -11,6 +11,7 @@ public class StoreVo extends ResponseVoBase implements Serializable{
     private String _id;
     private String img;
     private String name;
+    private String phone;
     private String location;
     private double lon;
     private double lat;
@@ -18,6 +19,14 @@ public class StoreVo extends ResponseVoBase implements Serializable{
     private ArrayList<StoreMenuVo> menus = new ArrayList<>();
     private ArrayList<StoreReplyVo> replys = new ArrayList<>();
     private StoreInfoVo info;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public ArrayList<StoreReplyVo> getReplys() {
         return replys;

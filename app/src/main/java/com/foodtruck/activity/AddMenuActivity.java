@@ -139,7 +139,7 @@ public class AddMenuActivity extends Activity {
 
     }
     private void addPrevMenuList(StoreMenuVo data) {
-        View menuView = getLayoutInflater().inflate(R.layout.row_menu, null);
+        View menuView = getLayoutInflater().inflate(R.layout.row_add_menu, null);
         ImageView img = (ImageView) menuView.findViewById(R.id.img_thumbnail);
         TextView tv_name = (TextView) menuView.findViewById(R.id.tv_name);
         TextView tvt_price = (TextView) menuView.findViewById(R.id.tv_price);
@@ -201,7 +201,7 @@ public class AddMenuActivity extends Activity {
     }
 
     private void addmenuList(String menuId) {
-        View menuView = getLayoutInflater().inflate(R.layout.row_menu, null);
+        View menuView = getLayoutInflater().inflate(R.layout.row_add_menu, null);
         ImageView img = (ImageView) menuView.findViewById(R.id.img_thumbnail);
         TextView tv_name = (TextView) menuView.findViewById(R.id.tv_name);
         TextView tvt_price = (TextView) menuView.findViewById(R.id.tv_price);

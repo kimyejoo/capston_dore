@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.StoreListActivity"
+        <activity android:name=".activity.SplashActivity"
             android:windowSoftInputMode="adjustNothing"
             >
             <intent-filter>
@@ -24,11 +24,15 @@
         <activity android:name=".activity.TruckInfoActivity" android:screenOrientation="portrait" />
         <activity android:name=".activity.SearchActivity" android:screenOrientation="portrait" />
         <activity android:name=".activity.SearchResultActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.StoreListActivity" android:screenOrientation="portrait" />
+
+        <!-- 트럭 정보 입력 화면 시작  -->
         <activity android:name=".activity.AddTruckActivity" android:screenOrientation="portrait" />
         <activity android:name=".activity.AddTruckInfoActivity" android:screenOrientation="portrait" />
         <activity android:name=".activity.AddMenuActivity" android:screenOrientation="portrait" />
         <activity android:name=".activity.AddReplyActivity" android:screenOrientation="portrait" />
-
+        <activity android:name=".activity.AddStoreListActivity" android:screenOrientation="portrait" />
+        <!-- 트럭 정보 입력 화면 끝 -->
 
         <activity android:name=".activity.AddPictureActivity"
             android:screenOrientation="portrait"

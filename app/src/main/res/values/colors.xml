@@ -9,5 +9,13 @@
     <color name="col_main_txt">#4a4a4a</color>
     <color name="col_hint_txt">#9f9f9f</color>
     <color name="col_main_bg">#0f0f0f</color>
+    <color name="col_blue">#0090ff</color>
+    <color name="col_gray">#85858e</color>
+
+
+    <drawable name="dcol_blue">#0090ff</drawable>
+    <drawable name="dcol_gray">#85858e</drawable>
+    <drawable name="dcol_white">#FFFFFF</drawable>
+
 
 </resources>

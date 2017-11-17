@@ -1,16 +1,26 @@
 package com.foodtruck.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DownloadManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.foodtruck.R;
+import com.foodtruck.network.NetworkResponse;
+import com.foodtruck.network.RequestApi;
 import com.foodtruck.utils.Constants;
+import com.foodtruck.utils.LogUtil;
+import com.foodtruck.vo.StoreListVo;
 
 import java.util.Calendar;
+
+import retrofit2.Call;
 
 //로고 화면
 public class SplashActivity extends Activity {
@@ -31,50 +41,30 @@ public class SplashActivity extends Activity {
 
     //푸드트럭 정보를 가져온다.
     private void requestData() {
-        startCal = Calendar.getInstance();
-        //TODO 데이터 받으러 가기
+        RequestApi.getInstance().getTruckList(new NetworkResponse<StoreListVo>() {
+            @Override
+            public void onSuccess(Call call, StoreListVo clazz) {
+                Intent intent = new Intent(SplashActivity.this, StoreListActivity.class);
+                intent.putExtra("data", clazz.getData());
+                startActivity(intent);
+            }
 
-        endCal = Calendar.getInstance();
-
-        //1. 남은 시간만큼 기다린다.
-        //2. 시간이 남은지 지속 적으로 확인한다.
-        launchMainActivity();
+            @Override
+            public void onFail(Call call, String msg) {
+                Toast.makeText(SplashActivity.this, " Error : " + msg, Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(SplashActivity.this)
+                        .setMessage("서버와 연결이 불안합니다. 잠시후 다시 시도해주세요.")
+                        .setCancelable(false)
+                        .setPositiveButton("종료", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                finish();
+                            }
+                        })
+                        .show();
+            }
+        });
     }
-
-    private void launchMainActivity() {
-        Log.d("log", "time : " + getViewChangeTime());
-
-        if(getViewChangeTime() <= 0) {
-            Intent intent = new Intent(SplashActivity.this, TruckInfoActivity.class);
-            startActivity(intent);
-
-            return;
-        }
-
-        //기다렸다가 실행
-        //FIXME 받아온 데이터를 같이 넘겨 줘야 한다.
-        handler.sendEmptyMessageDelayed(100, getViewChangeTime());
-    }
-
-    Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            Intent intent = new Intent(SplashActivity.this, TruckInfoActivity.class);
-            startActivity(intent);
-
-        }
-    };
-
-
-    //기다려야 되는 시간을 리턴
-    private int getViewChangeTime() {
-        long runtime = endCal.getTimeInMillis() - startCal.getTimeInMillis();
-        Log.e("log" , " runtime : " + runtime);
-        return Constants.HOLODING_TIME - (int) runtime;
-
-    }
-
-
 
 
 
