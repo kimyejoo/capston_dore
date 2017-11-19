@@ -16,5 +16,6 @@
     <string name="take_album">엘범에서 가져오기</string>
     <string name="fail_to_upload_picture">사진등록을 실패했습니다. \n잠시 후 다시 시도해주세요.</string>
     <string name="fail_to_upload">등록을 실패했습니다. \n잠시 후 다시 시도해주세요.</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

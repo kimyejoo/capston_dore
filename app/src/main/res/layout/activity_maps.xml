@@ -1,0 +1,159 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <fragment
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.foodtruck.activity.MapsActivity" />
+
+
+    <RelativeLayout
+        android:id="@+id/lay_truck_info"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="45dp"
+            android:orientation="vertical"
+            android:background="#FFFFFFFF"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            >
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:textColor="#4a4a4a"
+                android:layout_marginLeft="170dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="170dp"
+                android:layout_marginTop="8dp"
+
+                >
+                <ImageView
+                    android:id="@+id/img_star1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sel_ic_m_star"
+                    android:layout_marginRight="2dp"
+                    />
+                <ImageView
+                    android:id="@+id/img_star2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sel_ic_m_star"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginLeft="2dp"
+                    />
+                <ImageView
+                    android:id="@+id/img_star3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sel_ic_m_star"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginLeft="2dp"
+                    />
+                <ImageView
+                    android:id="@+id/img_star4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sel_ic_m_star"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginLeft="2dp"
+                    />
+                <ImageView
+                    android:id="@+id/img_star5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sel_ic_m_star"
+                    android:layout_marginLeft="2dp"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/lay_thumbnail"
+            android:layout_width="150dp"
+            android:layout_height="132dp"
+            android:layout_marginLeft="16dp"
+            >
+            <ImageView
+                android:id="@+id/img_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_roof"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFFFF"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_below="@id/lay_thumbnail"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            >
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textColor="#85858e"
+                />
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textColor="#85858e"
+                android:layout_below="@id/tv_location"
+                />
+
+            <TextView
+                android:id="@+id/tv_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:fontFamily="sans-serif-light"
+                android:textStyle="normal"
+                android:textColor="#85858e"
+                android:text="자세히보기"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="16dp"
+                />
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout >

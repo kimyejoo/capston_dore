@@ -13,14 +13,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.foodtruck.R;
+import com.foodtruck.utils.Constants;
 import com.foodtruck.utils.LogUtil;
+import com.foodtruck.utils.StringUtil;
 import com.foodtruck.vo.StoreMenuVo;
+import com.foodtruck.vo.StoreReplyVo;
 import com.foodtruck.vo.StoreVo;
 
 import java.text.DecimalFormat;
@@ -51,6 +56,11 @@ public class TruckInfoActivity extends Activity {
     private TextView tv_location;
 
     private String[] days = new String[]{"일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"};
+
+    private LinearLayout lay_reply;
+    private LinearLayout lay_replys;
+    private TextView tv_rating;
+    private ImageView[] img_reply_star = new ImageView[5];
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,8 +114,82 @@ public class TruckInfoActivity extends Activity {
         adapter = new Adapter(storeVo.getMenus());
         listView.setAdapter(adapter);
 
+        lay_reply = (LinearLayout) findViewById(R.id.lay_reply);
+        lay_replys = (LinearLayout) findViewById(R.id.lay_replys);
+        img_reply_star[0] = (ImageView) findViewById(R.id.img_reply_star1);
+        img_reply_star[1] = (ImageView) findViewById(R.id.img_reply_star2);
+        img_reply_star[2] = (ImageView) findViewById(R.id.img_reply_star3);
+        img_reply_star[3] = (ImageView) findViewById(R.id.img_reply_star4);
+        img_reply_star[4] = (ImageView) findViewById(R.id.img_reply_star5);
+
+        tv_rating = (TextView) findViewById(R.id.tv_rating);
+        setReplysInfo();
+
+        findViewById(R.id.ibt_add_reply).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addReply();
+            }
+        });
 
         selectedMenu(0);
+
+    }
+
+    private void setReplysInfo() {
+        if(storeVo.getReplys() == null || storeVo.getReplys().size() == 0) {
+            return;
+        }
+
+
+        ArrayList<StoreReplyVo> replys = storeVo.getReplys();
+
+
+        int totalRate = 0;
+
+        for (StoreReplyVo data : replys ) {
+            totalRate += data.getRate();
+            LogUtil.d(" Rate : " + data.getRate());
+            addReplyView(data);
+        }
+
+
+
+        setStars(img_reply_star, totalRate/replys.size());
+        tv_rating.setText(String.format("%.1f", (double)totalRate/replys.size()));
+
+    }
+
+    private void addReplyView(StoreReplyVo reply) {
+        View baseView = getLayoutInflater().inflate(R.layout.row_reply_review, null);
+        ImageView[] img_reply_star = new ImageView[5];
+        img_reply_star[0] = (ImageView) baseView.findViewById(R.id.img_star1);
+        img_reply_star[1] = (ImageView) baseView.findViewById(R.id.img_star2);
+        img_reply_star[2] = (ImageView) baseView.findViewById(R.id.img_star3);
+        img_reply_star[3] = (ImageView) baseView.findViewById(R.id.img_star4);
+        img_reply_star[4] = (ImageView) baseView.findViewById(R.id.img_star5);
+
+        setStars(img_reply_star, reply.getRate());
+
+        TextView tv_date = (TextView) baseView.findViewById(R.id.tv_date);
+        TextView tv_say = (TextView) baseView.findViewById(R.id.tv_say);
+
+        tv_date.setText(StringUtil.getCalculateTime(reply.getCreated_at()));
+        tv_say.setText(reply.getSay());
+
+        lay_replys.addView(baseView);
+
+    }
+
+    private void setStars(ImageView[] img, double rate) {
+        LogUtil.e(" rate:  " + rate);
+        for (int i=0; i<img.length; i++) {
+            if( i < rate) {
+                img[i].setSelected(true);
+            } else {
+                img[i].setSelected(false);
+            }
+        }
 
     }
 
@@ -134,8 +218,25 @@ public class TruckInfoActivity extends Activity {
                 updateTruckInfo();
                 break;
             case 2 :
+                updateReplys();
                 break;
         }
+    }
+
+    private void updateReplys() {
+
+        listView.setVisibility(View.GONE);
+        lay_info.setVisibility(View.GONE);
+        lay_reply.setVisibility(View.VISIBLE);
+
+
+
+
+
+
+    }
+
+    private void addReply() {
 
     }
 
@@ -143,6 +244,7 @@ public class TruckInfoActivity extends Activity {
 
         listView.setVisibility(View.VISIBLE);
         lay_info.setVisibility(View.GONE);
+        lay_reply.setVisibility(View.GONE);
 
     }
 
@@ -216,7 +318,11 @@ public class TruckInfoActivity extends Activity {
 
         listView.setVisibility(View.GONE);
         lay_info.setVisibility(View.VISIBLE);
+        lay_reply.setVisibility(View.GONE);
 
+        if(storeVo.getInfo() == null || storeVo.getInfo().getSay() == null) {
+           return;
+        }
         tv_owner_say.setText(storeVo.getInfo().getSay());
         tv_runtime.setText(storeVo.getInfo().getsDate() +":00 ~ " + storeVo.getInfo().geteDate() + ":00");
         tv_location.setText(storeVo.getLocation());
