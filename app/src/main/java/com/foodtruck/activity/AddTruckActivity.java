@@ -78,10 +78,6 @@ public class AddTruckActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        et_local.setText("서울특별시 마포구 월드컵로 235");
-        et_phone.setText("010-2081-3082");
-
     }
 
     /**

@@ -2,6 +2,7 @@ package com.foodtruck.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.DimenRes;
@@ -99,11 +100,13 @@ public class TruckInfoActivity extends Activity {
         }
 
 
-        Glide.with(TruckInfoActivity.this)
-                .load(storeVo.getImg())
-                .into(img_truck);
+        if(storeVo != null || storeVo.getImg() != null) {
+            Glide.with(TruckInfoActivity.this)
+                    .load(storeVo.getImg())
+                    .into(img_truck);
 
-        tv_truck_name.setText(storeVo.getName());
+            tv_truck_name.setText(storeVo.getName());
+        }
 
 
         listView = (RecyclerView) findViewById(R.id.listView);
@@ -146,6 +149,7 @@ public class TruckInfoActivity extends Activity {
 
 
         int totalRate = 0;
+        lay_replys.removeAllViews();
 
         for (StoreReplyVo data : replys ) {
             totalRate += data.getRate();
@@ -230,13 +234,26 @@ public class TruckInfoActivity extends Activity {
         lay_reply.setVisibility(View.VISIBLE);
 
 
-
-
-
-
     }
 
+    private final int REQUEST_ADD_REPLY = 3494;
+
     private void addReply() {
+        Intent intent = new Intent(TruckInfoActivity.this, ReplyActivity.class);
+        intent.putExtra("truck_id", storeVo.get_id());
+        startActivityForResult(intent, REQUEST_ADD_REPLY);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(data != null && data.hasExtra("data")){
+            StoreReplyVo replyVo = (StoreReplyVo) data.getSerializableExtra("data");
+            storeVo.getReplys().add(0, replyVo);
+
+            setReplysInfo();
+        }
 
     }
 

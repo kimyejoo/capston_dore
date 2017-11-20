@@ -39,7 +39,24 @@ public class StoreListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_list);
 
+
         storeList = (ArrayList<StoreVo>) getIntent().getSerializableExtra("data");
+
+
+        findViewById(R.id.img_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        findViewById(R.id.img_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StoreListActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
         listView = (RecyclerView) findViewById(R.id.listview);
         lManager = new LinearLayoutManager(this);

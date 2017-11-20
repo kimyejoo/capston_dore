@@ -43,6 +43,9 @@
         <activity
             android:name=".activity.StoreListActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ReplyActivity"
+            android:screenOrientation="portrait" />
 
         <!-- 트럭 정보 입력 화면 시작 -->
         <activity

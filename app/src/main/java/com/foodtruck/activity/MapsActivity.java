@@ -9,6 +9,8 @@ import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -35,6 +37,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
@@ -60,16 +63,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView tv_phone;
     private ImageView[] img_star = new ImageView[5];
 
-
+    private Calendar cal;
+    private boolean isLaunchAddTruck = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        findViewById(R.id.img_logo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(isLaunchAddTruck) {
+                    Intent intent = new Intent(MapsActivity.this, AddStoreListActivity.class);
+                    startActivity(intent);
+                    isLaunchAddTruck = false;
+                }
+
+                isLaunchAddTruck = true;
+                handler.sendEmptyMessageDelayed(0, 500);
+
+            }
+        });
 
         storeList = (ArrayList<StoreVo>) getIntent().getSerializableExtra("data");
 
@@ -83,6 +103,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         img_star[2] = (ImageView) findViewById(R.id.img_star3);
         img_star[3] = (ImageView) findViewById(R.id.img_star4);
         img_star[4] = (ImageView) findViewById(R.id.img_star5);
+
+        findViewById(R.id.img_list).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MapsActivity.this, StoreListActivity.class);
+                intent.putExtra("data", storeList);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.img_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MapsActivity.this, SearchActivity.class);
+                intent.putExtra("data", storeList);
+                startActivity(intent);
+            }
+        });
 
         findViewById(R.id.lay_truck_info).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +138,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         getLocation();
     }
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            isLaunchAddTruck = false;
+        }
+    };
+
 
     private void launchDetail(StoreVo data) {
         Intent intent = new Intent(MapsActivity.this, TruckInfoActivity.class);
@@ -242,6 +288,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     private void clearSelectedMarker() {
         lay_truck_info.setVisibility(View.GONE);
+        if(prevMarker == null) {
+            return;
+        }
         prevMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_bluepin));
         prevMarker = null;
     }
@@ -250,7 +299,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         lay_truck_info.setVisibility(View.VISIBLE);
         lay_truck_info.setTag(truck);
+        if(truck == null || truck.getName() == null) {
+            return;
 
+        }
         tv_name.setText(truck.getName());
         Glide.with(MapsActivity.this)
                 .load(truck.getImg())

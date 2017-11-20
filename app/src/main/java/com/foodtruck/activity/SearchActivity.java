@@ -35,8 +35,9 @@ public class SearchActivity extends Activity {
                 startActivity(intent);
             }
         });
-
     }
+
+
 
     //화면에 나올때 마다 하는 일
     @Override

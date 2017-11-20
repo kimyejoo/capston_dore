@@ -3,9 +3,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+
+    <RelativeLayout
+        android:id="@+id/lay_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#fff45d"
+        >
+
+        <ImageView
+            android:id="@+id/img_list"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_list"
+            android:layout_centerVertical="true"
+            android:scaleType="centerInside"
+            android:paddingLeft="19dp"
+            android:paddingRight="19dp"
+            />
+
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_logo"
+            android:layout_centerInParent="true"
+            />
+
+        <ImageView
+            android:id="@+id/img_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/search"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:paddingLeft="19dp"
+            android:paddingRight="19dp"
+
+            />
+    </RelativeLayout>
+
     <fragment
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
+        android:layout_below="@id/lay_top"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

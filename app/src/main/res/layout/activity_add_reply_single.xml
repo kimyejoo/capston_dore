@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    >
+
+    <RelativeLayout
+        android:id="@+id/lay_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#FFFFFF"
+        >
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/chevron_left"
+            android:layout_centerVertical="true"
+            android:scaleType="centerInside"
+            android:paddingLeft="3dp"
+            />
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="40dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="#4a4a4a"
+            android:letterSpacing="0.04"
+            android:text="별점"
+            android:textStyle="bold"
+            />
+
+        <ImageView
+            android:id="@+id/img_star1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sel_ic_big_star"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="2dp"
+            />
+        <ImageView
+            android:id="@+id/img_star2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sel_ic_big_star"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            />
+        <ImageView
+            android:id="@+id/img_star3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sel_ic_big_star"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            />
+        <ImageView
+            android:id="@+id/img_star4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sel_ic_big_star"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            />
+        <ImageView
+            android:id="@+id/img_star5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sel_ic_big_star"
+            android:layout_marginLeft="2dp"
+            />
+
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_say"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:textSize="16dp"
+        android:hint="솔직한 의견도 좋지만 무조건적인 비방 글은 삼가해 주세요"
+        android:textColorHint="#9f9f9f"
+        android:textColor="@color/col_main_txt"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_textbox"
+        android:padding="10dp"
+        />
+
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:text="리뷰등록"
+        android:gravity="center"
+        android:background="@drawable/icon_submit"
+        android:layout_marginTop="62dp"
+        android:textColor="#FFFFFFFF"
+        android:layout_gravity="center_horizontal"
+        />
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>
