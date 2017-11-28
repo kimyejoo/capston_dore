@@ -180,13 +180,13 @@ public class AddTruckActivity extends Activity {
     private class AzureFileUpload extends AsyncTask<Void, Void, Void> {
 
         private String filePath;
-        private static final String storageURL = "https://capfood.blob.core.windows.net/";
+        private static final String storageURL = "https://capstonfood.blob.core.windows.net/";
         private static final String storageContainer = "capfood";
         // Define the connection-string with your values
         public static final String storageConnectionString =
                 "DefaultEndpointsProtocol=http;" +
-                        "AccountName=capfood;" +
-                        "AccountKey=hpwKySibe4JgNNTe59aDUCGtsaKIBwTnmrfH260lUfrBo5H1LHulXKWhS6Q7TNGTuRxNvcpX95OVKCAiCwiGww==";
+                        "AccountName=capstonfood;" +
+                        "AccountKey=qzhix2vqFtDnoTgYf7gh6OcUid0y5VEmSih+pqrSakzfVJLsLLJpbX2tdYOYWTlqhyNf2r8tGJZ21JSH7EBu7A==";
 
         public AzureFileUpload(String filePath) {
             this.filePath = filePath;
@@ -206,7 +206,9 @@ public class AddTruckActivity extends Activity {
                 File source = new File(imgPath);
                 blob.upload(new FileInputStream(source), source.length());
 
-                imageUrl = "https://capfood.blob.core.windows.net/capfood/" +times+ ".jpg";
+//                imageUrl = "https://capfood.blob.core.windows.net/capfood/" +times+ ".jpg";
+                imageUrl = "https://capstonfood.blob.core.windows.net/capfood/" +times+ ".jpg";
+
 
             }
             catch (Exception e)
